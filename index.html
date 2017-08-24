@@ -42,7 +42,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="https://github.com/zhouruiyy/learngit/blob/master/1.jpg" class="js-avatar">
+			<img src="/assets/img/1.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Rico</a></h1>
@@ -100,7 +100,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="https://github.com/zhouruiyy/learngit/blob/master/1.jpg" class="js-avatar">
+				<img src="/assets/img/1.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Rico</h1>
@@ -152,6 +152,140 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-NSInvocation初识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/24/NSInvocation初识/">NSInvocation初识</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/24/NSInvocation初识/" class="archive-article-date">
+  	<time datetime="2017-08-24T12:50:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在看Effective Objective-C 2.0这本书，在介绍消息转发机制这部分的时候，遇到了NSInvocation这个类。<br>苹果给的官方解释是：NSInvocation作为对象呈现的Objective-C消息。</p>
+<blockquote>
+<p>An Objective-C message rendered as an object.<br>NSInvocation objects are used to store and forward messages between objects and between applications, primarily by <a href="https://developer.apple.com/documentation/foundation/nstimer?language=objc" target="_blank" rel="external">NSTimer</a> objects and the distributed objects system. An NSInvocation<br> object contains all the elements of an Objective-C message: a target, a selector, arguments, and the return value. Each of these elements can be set directly, and the return value is set automatically when the NSInvocation object is dispatched.<br>
+        
+          <a class="article-more-a" href="/2017/08/24/NSInvocation初识/#more">true >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/24/NSInvocation初识/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-总结并发、并行、同步、异步等概念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/24/总结并发、并行、同步、异步等概念/">总结并发、并行、同步、异步等概念</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/24/总结并发、并行、同步、异步等概念/" class="archive-article-date">
+  	<time datetime="2017-08-24T12:50:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在多线程程序中经常使用并发、并行，同步、异步这两组概念，那么下面说一下我所理解的这两组概念的联系与区别。</p>
+<h1 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h1><p><strong>并发</strong>指两个或两个以上的事件在同一时间段内发生（注意:<br>这里指的时间段是在微观上看，所以它很短，我们感觉不出来事件发生的时间差）。<br>并发意味着应用程序同时在多个任务上取得进展。那么，如果计算机只有一个CPU，应用程序可能不会同时完成多个任务，但在应用程序的某个时间内正在处理多个任务。它不能完全完成一个任务，然后再开始下一个任务。</p>
+<h1 id="并行"><a href="#并行" class="headerlink" title="并行"></a>并行</h1><p><strong>并行</strong>指两个或两个以上的事件在同一时刻发生。<br>并行意味着应用程序拆分成更小的子任务，这些任务可以并行处理，例如在多CPU在同一时间。</p>
+        
+          <a class="article-more-a" href="/2017/08/24/总结并发、并行、同步、异步等概念/#more">true >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/24/总结并发、并行、同步、异步等概念/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-XCode-8-安装插件遇到的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">

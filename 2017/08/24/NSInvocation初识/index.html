@@ -6,21 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>XCode 8 安装插件遇到的问题 | Hexo</title>
+  <title>NSInvocation初识 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言更新了Xcode 8之后，发现之前的Alcatraz中安装的插件不能用了。查了相关资料后，发现苹果从XCode 8开始Alcatraz插件了。 但是由于我们之前使用插件，现在离开他们，还真的有点不习惯。所以，废话不多说，开始我们的插件安装之旅。 首先介绍一下：update_xcode_plugins。这个插件就是为了兼容Xcode8以上使用插件，当然也是在原来Alcatraz插件的基础之上。">
+  <meta name="description" content="前言最近在看Effective Objective-C 2.0这本书，在介绍消息转发机制这部分的时候，遇到了NSInvocation这个类。苹果给的官方解释是：NSInvocation作为对象呈现的Objective-C消息。  An Objective-C message rendered as an object.NSInvocation objects are used to store a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="XCode 8 安装插件遇到的问题">
-<meta property="og:url" content="http://yoursite.com/2017/08/24/XCode-8-安装插件遇到的问题/index.html">
+<meta property="og:title" content="NSInvocation初识">
+<meta property="og:url" content="http://yoursite.com/2017/08/24/NSInvocation初识/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前言更新了Xcode 8之后，发现之前的Alcatraz中安装的插件不能用了。查了相关资料后，发现苹果从XCode 8开始Alcatraz插件了。 但是由于我们之前使用插件，现在离开他们，还真的有点不习惯。所以，废话不多说，开始我们的插件安装之旅。 首先介绍一下：update_xcode_plugins。这个插件就是为了兼容Xcode8以上使用插件，当然也是在原来Alcatraz插件的基础之上。">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1678649-de259e04b047058f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1678649-23a24f360426e9e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400">
-<meta property="og:updated_time" content="2017-08-24T12:42:46.000Z">
+<meta property="og:description" content="前言最近在看Effective Objective-C 2.0这本书，在介绍消息转发机制这部分的时候，遇到了NSInvocation这个类。苹果给的官方解释是：NSInvocation作为对象呈现的Objective-C消息。  An Objective-C message rendered as an object.NSInvocation objects are used to store a">
+<meta property="og:updated_time" content="2017-08-24T12:52:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XCode 8 安装插件遇到的问题">
-<meta name="twitter:description" content="前言更新了Xcode 8之后，发现之前的Alcatraz中安装的插件不能用了。查了相关资料后，发现苹果从XCode 8开始Alcatraz插件了。 但是由于我们之前使用插件，现在离开他们，还真的有点不习惯。所以，废话不多说，开始我们的插件安装之旅。 首先介绍一下：update_xcode_plugins。这个插件就是为了兼容Xcode8以上使用插件，当然也是在原来Alcatraz插件的基础之上。">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1678649-de259e04b047058f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="NSInvocation初识">
+<meta name="twitter:description" content="前言最近在看Effective Objective-C 2.0这本书，在介绍消息转发机制这部分的时候，遇到了NSInvocation这个类。苹果给的官方解释是：NSInvocation作为对象呈现的Objective-C消息。  An Objective-C message rendered as an object.NSInvocation objects are used to store a">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -158,53 +155,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-XCode-8-安装插件遇到的问题" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-NSInvocation初识" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      XCode 8 安装插件遇到的问题
+      NSInvocation初识
     </h1>
   
 
         
-        <a href="/2017/08/24/XCode-8-安装插件遇到的问题/" class="archive-article-date">
-  	<time datetime="2017-08-24T12:23:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-24</time>
+        <a href="/2017/08/24/NSInvocation初识/" class="archive-article-date">
+  	<time datetime="2017-08-24T12:50:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>更新了Xcode 8之后，发现之前的Alcatraz中安装的插件不能用了。查了相关资料后，发现苹果从XCode 8开始Alcatraz插件了。</p>
-<p>但是由于我们之前使用插件，现在离开他们，还真的有点不习惯。所以，废话不多说，开始我们的插件安装之旅。</p>
-<p>首先介绍一下：update_xcode_plugins。这个插件就是为了兼容Xcode8以上使用插件，当然也是在原来Alcatraz插件的基础之上。</p>
-<h2 id="具体步骤如下："><a href="#具体步骤如下：" class="headerlink" title="具体步骤如下："></a>具体步骤如下：</h2><h3 id="1-安装update-xcode-plugins"><a href="#1-安装update-xcode-plugins" class="headerlink" title="1.安装update_xcode_plugins"></a>1.安装update_xcode_plugins</h3><blockquote>
-<p>sudo gem install update_xcode_plugins</p>
-</blockquote>
-<a id="more"></a>
-<p>可能会出现如下问题：</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在看Effective Objective-C 2.0这本书，在介绍消息转发机制这部分的时候，遇到了NSInvocation这个类。<br>苹果给的官方解释是：NSInvocation作为对象呈现的Objective-C消息。</p>
 <blockquote>
-<p>ERROR:  While executing gem … (Errno::EPERM)<br> Operation not permitted - /usr/bin/term_cdiff</p>
+<p>An Objective-C message rendered as an object.<br>NSInvocation objects are used to store and forward messages between objects and between applications, primarily by <a href="https://developer.apple.com/documentation/foundation/nstimer?language=objc" target="_blank" rel="external">NSTimer</a> objects and the distributed objects system. An NSInvocation<br> object contains all the elements of an Objective-C message: a target, a selector, arguments, and the return value. Each of these elements can be set directly, and the return value is set automatically when the NSInvocation object is dispatched.<br><a id="more"></a><br>一个NSInvocation对象包含一个Objective-C消息的所有元素：target，selector，argument和return value。可以直接设置每个元素，并且在NSInvocation分派对象时自动设置返回值。</p>
 </blockquote>
-<p>解决方案：</p>
-<blockquote>
-<p>sudo gem install -n /usr/local/bin update_xcode_plugins</p>
-</blockquote>
-<h3 id="2-使用刚安装的update-xcode-plugins"><a href="#2-使用刚安装的update-xcode-plugins" class="headerlink" title="2.使用刚安装的update_xcode_plugins"></a>2.使用刚安装的update_xcode_plugins</h3><p>执行这句话的前提是本机的XCode已经安装了Alcatraz插件。</p>
-<blockquote>
-<p>update_xcode_plugins</p>
-</blockquote>
-<p>一般到这一步，已经差不多了，但是，还会存在有些插件不起作用或者干脆Package Manager就没有出现，那么如果存在这样的情况，请执行下面的命令：</p>
-<blockquote>
-<p>update_xcode_plugins –unsign</p>
-</blockquote>
-<p>选择对应的XCode（可能在你的机器上安装了不同版本的XCode），这样来获得一个unsign的XCode.</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1678649-de259e04b047058f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>到此，插件问题完美解决！</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1678649-23a24f360426e9e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400" alt="image.png"></p>
+<p>所谓的方法签名，即方法所对应的返回值类型和参数类型。当NSInvocation被调用，它会在运行时通过目标对象去寻找对应的方法，从而确保唯一性，可以用[receiver message]来解释。实际开发过程中直接创建NSInvocation的情况不多见，这些事情通常交给系统来做。比如bang的JSPatch中arm64方法替换的实现就是利用runtime消息转发最后一步中的NSInvocation实现的。</p>
+<h1 id="NSInvocation的一般用法"><a href="#NSInvocation的一般用法" class="headerlink" title="NSInvocation的一般用法"></a>NSInvocation的一般用法</h1><p>以下面字符串拼接为例，我们来尝试将该方法的调用转换为NSInvocation的消息转发。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSString *string = @&quot;Hello&quot;;</div><div class="line">NSString *addString = [string stringByAppendingString:@&quot; World!&quot;];</div></pre></td></tr></table></figure></p>
+<p>用NSInvocation转换后：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">NSString *string = @&quot;Hello&quot;;</div><div class="line">NSString *addString;</div><div class="line">NSString* stringToAppend = @&quot; World!&quot;;</div><div class="line">//invocationWithMethodSignature: 使用给定方法签名来构建消息的对象。</div><div class="line">NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:[NSString instanceMethodSignatureForSelector:@selector(stringByAppendingString:)]];</div><div class="line">//设置target</div><div class="line">invocation.target = string;</div><div class="line">//设置参数即上面对应的World！字符串，index为2 是因为0、1两个参数已经被target和selector占用 </div><div class="line">[invocation setArgument:&amp;stringToAppend atIndex:2];</div><div class="line">//执行制定对象的指定方法，并且传递指定的参数</div><div class="line">[invocation invoke];</div><div class="line">//得到返回值 并赋值addString</div><div class="line">[invocation getReturnValue:&amp;addString];</div></pre></td></tr></table></figure></p>
+<p>一般是通过NSInvocation进行消息转发来实现未定义的方法，通过runtime来实现消息的动态发送。</p>
+<p>之后对NSInvocation的研究再在下面补充！</p>
 
       
 
@@ -294,7 +273,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/24/XCode-8-安装插件遇到的问题/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/24/NSInvocation初识/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -308,18 +287,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/24/总结并发、并行、同步、异步等概念/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          总结并发、并行、同步、异步等概念
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/24/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2017/08/24/总结并发、并行、同步、异步等概念/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">总结并发、并行、同步、异步等概念</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -347,7 +317,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="XCode-8-安装插件遇到的问题" data-title="XCode 8 安装插件遇到的问题" data-url="http://yoursite.com/2017/08/24/XCode-8-安装插件遇到的问题/"></div>
+	<div class="ds-thread" data-thread-key="NSInvocation初识" data-title="NSInvocation初识" data-url="http://yoursite.com/2017/08/24/NSInvocation初识/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
