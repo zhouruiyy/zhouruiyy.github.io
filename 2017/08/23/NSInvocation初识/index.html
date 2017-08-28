@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Rico的博客</title>
+  <title>NSInvocation初识 | Rico的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="iOS进阶中。。。">
+  <meta name="description" content="前言最近在看Effective Objective-C 2.0这本书，在介绍消息转发机制这部分的时候，遇到了NSInvocation这个类。苹果给的官方解释是：NSInvocation作为对象呈现的Objective-C消息。  An Objective-C message rendered as an object.NSInvocation objects are used to store a">
 <meta name="keywords" content="iOS,开发者,程序猿,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Rico的博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSInvocation初识">
+<meta property="og:url" content="http://yoursite.com/2017/08/23/NSInvocation初识/index.html">
 <meta property="og:site_name" content="Rico的博客">
-<meta property="og:description" content="iOS进阶中。。。">
+<meta property="og:description" content="前言最近在看Effective Objective-C 2.0这本书，在介绍消息转发机制这部分的时候，遇到了NSInvocation这个类。苹果给的官方解释是：NSInvocation作为对象呈现的Objective-C消息。  An Objective-C message rendered as an object.NSInvocation objects are used to store a">
+<meta property="og:updated_time" content="2017-08-28T02:19:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rico的博客">
-<meta name="twitter:description" content="iOS进阶中。。。">
+<meta name="twitter:title" content="NSInvocation初识">
+<meta name="twitter:description" content="前言最近在看Effective Objective-C 2.0这本书，在介绍消息转发机制这部分的时候，遇到了NSInvocation这个类。苹果给的官方解释是：NSInvocation作为对象呈现的Objective-C消息。  An Objective-C message rendered as an object.NSInvocation objects are used to store a">
   
     <link rel="alternative" href="/atom.xml" title="Rico的博客" type="application/atom+xml">
   
@@ -155,130 +156,203 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-NSInvocation初识" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/24/hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-24T09:12:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/24/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      NSInvocation初识
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/23/NSInvocation初识/" class="archive-article-date">
+        
+        <a href="/2017/08/23/NSInvocation初识/" class="archive-article-date">
   	<time datetime="2017-08-23T11:31:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-23</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/23/NSInvocation初识/">NSInvocation初识</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在看Effective Objective-C 2.0这本书，在介绍消息转发机制这部分的时候，遇到了NSInvocation这个类。<br>苹果给的官方解释是：NSInvocation作为对象呈现的Objective-C消息。</p>
+<blockquote>
+<p>An Objective-C message rendered as an object.<br>NSInvocation objects are used to store and forward messages between objects and between applications, primarily by <a href="https://developer.apple.com/documentation/foundation/nstimer?language=objc" target="_blank" rel="external">NSTimer</a> objects and the distributed objects system. An NSInvocation<br> object contains all the elements of an Objective-C message: a target, a selector, arguments, and the return value. Each of these elements can be set directly, and the return value is set automatically when the NSInvocation object is dispatched.</p>
+</blockquote>
+<a id="more"></a>
+<p>一个NSInvocation对象包含一个Objective-C消息的所有元素：target，selector，argument和return value。可以直接设置每个元素，并且在NSInvocation分派对象时自动设置返回值。</p>
+<p>所谓的方法签名，即方法所对应的返回值类型和参数类型。当NSInvocation被调用，它会在运行时通过目标对象去寻找对应的方法，从而确保唯一性，可以用[receiver message]来解释。实际开发过程中直接创建NSInvocation的情况不多见，这些事情通常交给系统来做。比如bang的JSPatch中arm64方法替换的实现就是利用runtime消息转发最后一步中的NSInvocation实现的。</p>
+<h1 id="NSInvocation的一般用法"><a href="#NSInvocation的一般用法" class="headerlink" title="NSInvocation的一般用法"></a>NSInvocation的一般用法</h1><p>以下面字符串拼接为例，我们来尝试将该方法的调用转换为NSInvocation的消息转发。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSString *string = @&quot;Hello&quot;;</div><div class="line">NSString *addString = [string stringByAppendingString:@&quot; World!&quot;];</div></pre></td></tr></table></figure></p>
+<p>用NSInvocation转换后：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">NSString *string = @&quot;Hello&quot;;</div><div class="line">NSString *addString;</div><div class="line">NSString* stringToAppend = @&quot; World!&quot;;</div><div class="line">//invocationWithMethodSignature: 使用给定方法签名来构建消息的对象。</div><div class="line">NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:[NSString instanceMethodSignatureForSelector:@selector(stringByAppendingString:)]];</div><div class="line">//设置target</div><div class="line">invocation.target = string;</div><div class="line">//设置参数即上面对应的World！字符串，index为2 是因为0、1两个参数已经被target和selector占用 </div><div class="line">[invocation setArgument:&amp;stringToAppend atIndex:2];</div><div class="line">//执行制定对象的指定方法，并且传递指定的参数</div><div class="line">[invocation invoke];</div><div class="line">//得到返回值 并赋值addString</div><div class="line">[invocation getReturnValue:&amp;addString];</div></pre></td></tr></table></figure></p>
+<p>一般是通过NSInvocation进行消息转发来实现未定义的方法，通过runtime来实现消息的动态发送。</p>
+<p>之后对NSInvocation的研究再在下面补充！</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>这瓶可乐我收下啦，谢谢！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/23/NSInvocation初识/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/18/总结并发、并行、同步、异步等概念/" class="archive-article-date">
-  	<time datetime="2017-08-18T03:06:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-18</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/08/24/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/18/总结并发、并行、同步、异步等概念/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">总结并发、并行、同步、异步等概念</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/18/总结并发、并行、同步、异步等概念/">总结并发、并行、同步、异步等概念</a>
-    </h1>
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="NSInvocation初识" data-title="NSInvocation初识" data-url="http://yoursite.com/2017/08/23/NSInvocation初识/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/10/XCode-8-安装插件遇到的问题/" class="archive-article-date">
-  	<time datetime="2017-08-10T11:09:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/10/XCode-8-安装插件遇到的问题/">XCode 8 安装插件遇到的问题</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -301,8 +375,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

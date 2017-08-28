@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Rico的博客</title>
+  <title>总结并发、并行、同步、异步等概念 | Rico的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="iOS进阶中。。。">
+  <meta name="description" content="前言在多线程程序中经常使用并发、并行，同步、异步这两组概念，那么下面说一下我所理解的这两组概念的联系与区别。 并发并发指两个或两个以上的事件在同一时间段内发生（注意:这里指的时间段是在微观上看，所以它很短，我们感觉不出来事件发生的时间差）。并发意味着应用程序同时在多个任务上取得进展。那么，如果计算机只有一个CPU，应用程序可能不会同时完成多个任务，但在应用程序的某个时间内正在处理多个任务。它不能完">
 <meta name="keywords" content="iOS,开发者,程序猿,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Rico的博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="总结并发、并行、同步、异步等概念">
+<meta property="og:url" content="http://yoursite.com/2017/08/18/总结并发、并行、同步、异步等概念/index.html">
 <meta property="og:site_name" content="Rico的博客">
-<meta property="og:description" content="iOS进阶中。。。">
+<meta property="og:description" content="前言在多线程程序中经常使用并发、并行，同步、异步这两组概念，那么下面说一下我所理解的这两组概念的联系与区别。 并发并发指两个或两个以上的事件在同一时间段内发生（注意:这里指的时间段是在微观上看，所以它很短，我们感觉不出来事件发生的时间差）。并发意味着应用程序同时在多个任务上取得进展。那么，如果计算机只有一个CPU，应用程序可能不会同时完成多个任务，但在应用程序的某个时间内正在处理多个任务。它不能完">
+<meta property="og:updated_time" content="2017-08-28T02:19:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rico的博客">
-<meta name="twitter:description" content="iOS进阶中。。。">
+<meta name="twitter:title" content="总结并发、并行、同步、异步等概念">
+<meta name="twitter:description" content="前言在多线程程序中经常使用并发、并行，同步、异步这两组概念，那么下面说一下我所理解的这两组概念的联系与区别。 并发并发指两个或两个以上的事件在同一时间段内发生（注意:这里指的时间段是在微观上看，所以它很短，我们感觉不出来事件发生的时间差）。并发意味着应用程序同时在多个任务上取得进展。那么，如果计算机只有一个CPU，应用程序可能不会同时完成多个任务，但在应用程序的某个时间内正在处理多个任务。它不能完">
   
     <link rel="alternative" href="/atom.xml" title="Rico的博客" type="application/atom+xml">
   
@@ -155,130 +156,204 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-总结并发、并行、同步、异步等概念" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/24/hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-24T09:12:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/24/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      总结并发、并行、同步、异步等概念
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/23/NSInvocation初识/" class="archive-article-date">
-  	<time datetime="2017-08-23T11:31:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/23/NSInvocation初识/">NSInvocation初识</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/18/总结并发、并行、同步、异步等概念/" class="archive-article-date">
+        
+        <a href="/2017/08/18/总结并发、并行、同步、异步等概念/" class="archive-article-date">
   	<time datetime="2017-08-18T03:06:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-18</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/18/总结并发、并行、同步、异步等概念/">总结并发、并行、同步、异步等概念</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在多线程程序中经常使用并发、并行，同步、异步这两组概念，那么下面说一下我所理解的这两组概念的联系与区别。</p>
+<h1 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h1><p><strong>并发</strong>指两个或两个以上的事件在同一时间段内发生（注意:<br>这里指的时间段是在微观上看，所以它很短，我们感觉不出来事件发生的时间差）。<br>并发意味着应用程序同时在多个任务上取得进展。那么，如果计算机只有一个CPU，应用程序可能不会同时完成多个任务，但在应用程序的某个时间内正在处理多个任务。它不能完全完成一个任务，然后再开始下一个任务。</p>
+<h1 id="并行"><a href="#并行" class="headerlink" title="并行"></a>并行</h1><p><strong>并行</strong>指两个或两个以上的事件在同一时刻发生。<br>并行意味着应用程序拆分成更小的子任务，这些任务可以并行处理，例如在多CPU在同一时间。</p>
+<a id="more"></a>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>如上，并发性与应用程序处理多个任务的方式有关。应用程序可以在某个时间（顺序地）处理一个任务，或者同时处理多个任务。<br>另一方面，并行性与应用程序如何处理每个单独的任务有关。一个应用程序可以处理连续的任务从开始到结束，或将任务分解成子任务可以并行完成。</p>
+<p>并发可认为是一种逻辑结构的设计模式。你可以用并发的设计方式去设计模型，然后运行在一个单核系统上，通过系统动态地逻辑切换制造出并行的假象。此时，你的程序不是并行，但是是并发的。你可以将这种模型不加修改地运行在多核系统上，此时你的程序可以认为是并行。而并行则更关注的是程序的执行。</p>
+<h1 id="串行"><a href="#串行" class="headerlink" title="串行"></a>串行</h1><p><strong>串行</strong>指多个任务时，各个任务按顺序执行，完成一个之后才能进行下一个。</p>
+<h1 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h1><p><strong>同步</strong><br>串行是同步线程实现的方式。一个任务执行完成后才能执行下一个任务，单线程只能执行一个任务。</p>
+<h1 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h1><p><strong>异步</strong>就是彼此独立,在等待某事件的过程中继续做自己的事，不需要等待这一事件完成后再工作。线程就是实现异步的一个方式。异步是让调用方法的主线程不需要同步等待另一线程的完成，从而可以让主线程干其它的事情。</p>
+<p>并发和并行其实是异步线程实现的两种形式。并行其实是真正的异步，多核CUP可以同时开启多条线程供多个任务同时执行，互补干扰。但是并发就不一样了，是一个伪异步。在单核CUP中只能有一条线程，但是又想执行多个任务。这个时候，只能在一条线程上不停的切换任务。</p>
+<p>###小结<br>同步和异步是在多任务的情况下，这是前提。其次，同步和异步是指逻辑调用方式。同步的前一个逻辑调用的输出作为第二个逻辑调用的输入，后一个逻辑调用必须等待前一个调用执行完才能开始调起执行。正好与同步相反，后一个逻辑调用无需等待前一个逻辑调用执行完毕。也就是说前一个逻辑调用发起后就直接返回了，并没有输出，而是在调用执行完成后通过状态、通知来通知调用者，或通过回调函数处理这个调用。</p>
+<p>本文摘录了一下网上相关内容以及自己的一些理解，有问题请留言，谢谢啦！</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>这瓶可乐我收下啦，谢谢！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/18/总结并发、并行、同步、异步等概念/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/10/XCode-8-安装插件遇到的问题/" class="archive-article-date">
-  	<time datetime="2017-08-10T11:09:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/08/23/NSInvocation初识/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          NSInvocation初识
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/10/XCode-8-安装插件遇到的问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">XCode 8 安装插件遇到的问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/10/XCode-8-安装插件遇到的问题/">XCode 8 安装插件遇到的问题</a>
-    </h1>
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="总结并发、并行、同步、异步等概念" data-title="总结并发、并行、同步、异步等概念" data-url="http://yoursite.com/2017/08/18/总结并发、并行、同步、异步等概念/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -301,8 +376,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
